@@ -185,3 +185,111 @@ c_n = \lim_{x \to x_0} \frac{f(x) - \left( c_0 + c_1 (x - x_0) + \dots + c_{n-1}
     \item $(\sum_{k=0}^{n} \alpha_k \cdot f_k(x))' = \sum_{k=0}^{n} \alpha_k \cdot f'_k(x)$
     \item $(\prod_{n=1}^{k} f_n)' = f'_1 \cdot f_2 \cdot ... \cdot f_n + f_1 \cdot f'_2 \cdot ... \cdot f_n + \dots + f_1 \cdot f_2 \cdot ... \cdot f'_n$
 \end{enumerate}
+
+\subsection{Теорема. Производная композиции функций.}
+
+\begin{center}
+    \( (gf)'(x) = (g(f(x)))' = g'(f(x)) \cdot f'(x) \)
+\end{center}
+\(f: X \to Y, X \subset Y, f \text{ дифференцируема в } x\)\\
+\(g: Y \to \mathbb{R}, Y \subset \mathbb{R}, g \text{ дифференцируема в } y = f(x) \)
+
+\begin{proof}
+    \(
+    f(x+h) - f(x) = f'(x) \cdot h + o(h), h \to 0 \\
+    g(y +t) - g(y) = g'(y) \cdot t + o(t), t \to 0
+    \)\\
+
+    \(
+    (gf)(x+h) - gf(x) = g(f(x+h)) - g(f(x)) = \\
+    =  g(f(x) + f'(x) \cdot h + o(h)) - g(f(x))
+    \)\\
+
+    ***
+    \(\\
+    f(x) = y \\
+    \text{Возьмем за } t : f'(x) \cdot h + o(h)
+    \), тогда\\
+    ***\\
+
+    \(
+    g(f(x) + t) - g(f(x)) = g(y + t) - g(y) = g'(y) \cdot t + o(t) = \\
+    = g'(f(x)) \cdot (f'(x) \cdot h + o(h)) + o(f'(x) \cdot h + o(h)) = \\
+    = g'(x) \cdot f'(x) \cdot h + o(h), h \to 0 \\
+    \text{Возьмем за } A(x) \cdot h: g'(x) \cdot f'(x) \cdot h \\
+    \implies A(x) \cdot h + o(h), \text{дифференцируемо.}
+    \)
+\end{proof}
+
+\subsection{Теорема. Производная обратной функции}
+
+\(
+f \text{ дифференцируема в } x_0, \exists f^{-1}(x)\\
+(f^{-1})'(f(x_0)) = \frac{1}{f'(x_0)}
+\)
+\begin{proof}
+    \(\text{ возьмем } y_0 = f(x_0)\\
+    (f^{-1})' = \lim_{h \to 0} \frac{f^{-1}(y_0+h) - f^{-1}(y_0)}{h} = \\
+    = \lim_{y \to y_0} \frac{f^{-1}(y) - f^{-1}(y_0)}{y - y_0} = \\
+    = \lim_{x \to x_0} \frac{ f^{-1}(f(x)) - f^{-1}(f(x_0)) }{f(x) - f(x_0)} = \\
+    = lim_{x \to x_0} \frac{x - x_0}{f(x) - f(x_0)} = \\
+    = \frac{1}{f'(x)}
+    \)
+\end{proof}
+
+\subsection*{Пример нахождения производной}
+\[
+(x^n)' = nx^{n-1}
+\]
+Рассмотрим определение производной:
+\[
+\lim_{h \to 0} \frac{(x+h)^n - x^n}{h}.
+\]
+Вынесем $x^n$:
+\[
+(x+h)^n = x^n \left(1 + \frac{h}{x}\right)^n.
+\]
+Тогда:
+\[
+\lim_{h \to 0} \frac{x^n \left( (1 + \frac{h}{x})^n - 1 \right)}{h}.
+\]
+Используем приближенное разложение \((1 + u)^n \approx 1 + nu + o(u)\) при малых \( u \):
+\[
+(1 + \frac{h}{x})^n - 1 \approx n \frac{h}{x} + o(h).
+\]
+Подставляем:
+\[
+\lim_{h \to 0} \frac{x^n \left(n \frac{h}{x} + o(h)\right)}{h}.
+\]
+Раскрываем множители:
+\[
+\lim_{h \to 0} \frac{n x^{n-1} h + x^n o(h)}{h}.
+\]
+Разделяем дробь:
+\[
+\lim_{h \to 0} \left( n x^{n-1} + x^n \frac{o(h)}{h} \right).
+\]
+Так как \( \frac{o(h)}{h} \to 0 \) при \( h \to 0 \), остается:
+\[
+n x^{n-1}.
+\]
+Следовательно, производная:
+\[
+(x^n)' = n x^{n-1}.
+\]
+
+\subsection{Параметрические функции}
+
+\[
+\left\{
+\begin{array}{l}
+    x(t) = \cos(t) \\
+    y(t) = \sin(t)
+\end{array}
+\right.
+\]
+\begin{center}
+    \(
+    y'_x = \frac{y'_t}{x'_t} = \frac{\cos(t)}{- \sin(t)} = - \ctg(t)
+    \)
+\end{center}
